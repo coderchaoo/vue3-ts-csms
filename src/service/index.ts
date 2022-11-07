@@ -5,9 +5,9 @@
  * @since: 2022-09-16 14:15
  */
 
-import XCRequest from "./request/request";
-import { BASE_URL, TIME_OUT } from "./request/config";
 import localCache from "@/utils/cache";
+import { BASE_URL, TIME_OUT } from "./request/config";
+import XCRequest from "./request/request";
 
 export default new XCRequest({
   baseURL: BASE_URL,
