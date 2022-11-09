@@ -29,7 +29,7 @@ interface XCRequestConfig extends AxiosRequestConfig {
 export default class XCRequest {
   instance: AxiosInstance;
   interceptorsHooks?: IIterceptorHooks;
-  DEFAUT_IS_SHOWLOADING = false;
+  DEFAUT_IS_SHOWLOADING = true;
   isShowLoading?: boolean = this.DEFAUT_IS_SHOWLOADING;
   constructor(config: XCRequestConfig) {
     // 将axios实例赋值给XCRequest实例的instance属性

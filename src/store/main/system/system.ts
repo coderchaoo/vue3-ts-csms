@@ -11,19 +11,22 @@ const systemModule: Module<ISystemState, IRootState> = {
       usersList: [],
       usersCount: 0,
       roleList: [],
-      roleCount: 0
+      roleCount: 0,
+      goodsList: [],
+      goodsCount: 0,
+      menuList: [],
+      menuCount: 0
     };
   },
   getters: {
-    getPageListData(state) {
+    pageListData(state) {
       return (pageName: string) => {
         return (state as any)[`${pageName}List`];
-        // switch (pageName) {
-        //   case 'users':
-        //     return state.usersList
-        //   case 'role':
-        //     return state.roleList
-        // }
+      };
+    },
+    pageListCount(state) {
+      return (pageName: string) => {
+        return (state as any)[`${pageName}Count`];
       };
     }
   },
@@ -39,6 +42,18 @@ const systemModule: Module<ISystemState, IRootState> = {
     },
     changeRoleCount(state, count: number) {
       state.roleCount = count;
+    },
+    changeGoodsList(state, list: any[]) {
+      state.goodsList = list;
+    },
+    changeGoodsCount(state, count: number) {
+      state.goodsCount = count;
+    },
+    changeMenuList(state, list: any[]) {
+      state.menuList = list;
+    },
+    changeMenuCount(state, count: number) {
+      state.menuCount = count;
     }
   },
   actions: {
@@ -48,10 +63,10 @@ const systemModule: Module<ISystemState, IRootState> = {
       const pageUrl = `/${pageName}/list`;
       // 2.对页面发送请求
       const pageResult = await requestPageListData(pageUrl, payload.queryInfo);
-      // 3.将数据存储到state中
       const { list, totalCount } = pageResult.data;
       const changePageName =
         pageName.slice(0, 1).toUpperCase() + pageName.slice(1);
+      // 3.将数据存储到state中
       commit(`change${changePageName}List`, list);
       commit(`change${changePageName}Count`, totalCount);
     }

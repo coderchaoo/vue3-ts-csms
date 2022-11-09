@@ -10,6 +10,7 @@ declare module "*.vue" {
   declare module "@vue/runtime-core" {
     interface ComponentCustomProperties {
       $store: Store;
+      $filters: any;
     }
   }
   export default component;

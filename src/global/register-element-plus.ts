@@ -29,7 +29,8 @@ import {
   ElConfigProvider,
   ElTable,
   ElTableColumn,
-  ElPagination
+  ElPagination,
+  ElImage
 } from "element-plus";
 import { App } from "vue";
 
@@ -68,7 +69,8 @@ export function registerElementPlus(rootApp: App) {
     ElConfigProvider,
     ElTable,
     ElTableColumn,
-    ElPagination
+    ElPagination,
+    ElImage
   ];
   for (const component of components) {
     rootApp.component(component.name, component);

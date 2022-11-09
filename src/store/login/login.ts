@@ -5,7 +5,7 @@ import {
   requestUserMenusByRoleId
 } from "@/service/login/login";
 import localCache from "@/utils/cache";
-import { mapMenusToRoutes } from "@/utils/map-menu";
+import { mapMenusToPermissions, mapMenusToRoutes } from "@/utils/map-menu";
 import { Module } from "vuex";
 import { IRootState } from "../types";
 import { ILoginState } from "./types";
@@ -17,7 +17,8 @@ const loginModule: Module<ILoginState, IRootState> = {
       token: "",
       userInfo: {},
       userMenus: [],
-      loading: false
+      loading: false,
+      permissions: []
     };
   },
   mutations: {
@@ -38,6 +39,10 @@ const loginModule: Module<ILoginState, IRootState> = {
       routes.forEach((route) => {
         router.addRoute("main", route);
       });
+
+      // 获取用户按钮的权限
+      const permissions = mapMenusToPermissions(userMenus);
+      state.permissions = permissions;
     }
   },
   getters: {},

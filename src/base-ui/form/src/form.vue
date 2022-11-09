@@ -2,7 +2,7 @@
   <div class="form">
     <!-- 头部插槽 -->
     <slot name="header"></slot>
-
+    <!-- 表单 -->
     <el-form :label-width="labelWidth" :style="itemLayout">
       <el-row :gutter="gutter">
         <template v-for="formItem in formItems" :key="formItem.label">
@@ -56,7 +56,7 @@
 import { defineProps, defineEmits, PropType, ref, watch } from "vue";
 import { IFormItem } from "../types";
 const props = defineProps({
-  /* TAG 通过v-model绑定的属性 */
+  /* TAG 通过v-model绑定的属性，通过v-model:propName可以指定属性名，没指定默认就是modelValue */
   modelValue: {
     type: Object,
     required: true
@@ -96,7 +96,7 @@ watch(
   formData,
   (newValue) => {
     /* TAG 获取到新值，通过事件重新发送给上层组件
-           不要直接修改props.modelValue的值，vue中不推荐直接这样改，因为这样改会直接导致上层组件中的formData的值发生变化，不容易维护
+           不要直接修改props.modelValue的值，vue中不推荐直接这样改，因为这样改会直接导致上层组件中的formData的值发生变化，不符合单向数据流原则且不容易维护
     */
     emit("update:modelValue", newValue);
   },

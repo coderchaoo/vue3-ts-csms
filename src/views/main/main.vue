@@ -30,7 +30,7 @@ import NavMenu from "@/components/nav-menu";
   text-align: center;
   height: 48px;
   align-items: center;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #f0f2f5;
 }
 .el-main {
   color: #333;
